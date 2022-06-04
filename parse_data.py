@@ -15,13 +15,9 @@ myUnits = {}
 
 for line in fileRead:
     stringList = line.split(",")
-    #print(stringList[0])
-    #print(stringList[len(stringList)-1])
     if len(stringList) < 6:
         continue
-#    print(stringList)
     key0 = stringList[1]
-#    print(key0)
 
     if key0 in myD:
         updateMe = myD[key0]
@@ -66,12 +62,6 @@ for line in fileRead:
             myUnits[key0] = heroList
 
 
-#print(myD)
-#for x in myD:
-#    dict1 = myD[x]
-#    top1 = dict1["first"] / dict1["appears"]
-#    top4 = dict1["top4"] / dict1["appears"]
-#    print(x,",total,", dict1["appears"], " ,1st Place Percentage, ", str(top1), ", Top 4 percentage ,", str(top4))
 sortedPos = sorted(myD.items(), key=lambda x:x[1]["top4"] / x[1]["appears"], reverse=True)
 finalList = dict(sortedPos)
 

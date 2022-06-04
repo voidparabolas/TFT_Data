@@ -3,9 +3,14 @@ import pandas as pd
 import json
 import time
 
-# golbal variables
-api_key = '' #ADD API KEY HERE
-#watcher = LolWatcher(api_key)
+#---------------------------------------------------------i
+#UPDATE API KEY
+api_key = 'RGAPI-36827ef0-8173-4125-950b-6eb21d56ce40' 
+num_matches = 100
+#UPDATE API KEY
+#--------------------------------------------------------
+
+
 watcher = TftWatcher(api_key)
 my_region = 'na1'
 
@@ -24,11 +29,7 @@ TopRatedLadderEntry = watcher.league.rated_ladders(my_region, 'RANKED_TFT_TURBO'
 
 
 for z in TopRatedLadderEntry:
-   #print(x)
-    #get Name
-    #first = TopRatedLadderEntry[0]
     name = z["summonerName"]
-    #print("Type:",type(first))
     print(name)
 
     #Get puuid
@@ -36,12 +37,8 @@ for z in TopRatedLadderEntry:
         summ_info = watcher.summoner.by_name(my_region, name)
         print("Summner Info:", summ_info)
         puuid = summ_info["puuid"]
-
         print("puuid:", puuid)
-
-    #last 20 matches
-        matches = watcher.match.by_puuid(my_region, puuid,100)
-    #print("Matches",matches)
+        matches = watcher.match.by_puuid(my_region, puuid,num_matches)
         for m in matches:
             if m in masterMatch:
                 print("dupe match")
